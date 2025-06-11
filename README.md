@@ -5,4 +5,3 @@
 ![Deployed](https://img.shields.io/badge/deployed-GitHub_Pages-brightgreen)
 
 # My Restaurant App
-![Restaurant App Banner](./banner.png)
