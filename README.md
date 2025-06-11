@@ -4,4 +4,4 @@
 ![Tech Stack](https://img.shields.io/badge/built_with-React,_Node,_MongoDB-blue)
 ![Deployed](https://img.shields.io/badge/deployed-GitHub_Pages-brightgreen)
 
-# My Restaurant App
+# Restaurant App
