@@ -1,3 +1,4 @@
+![Restaurant App Banner](./banner.png)
 ![GitHub Repo size](https://img.shields.io/github/repo-size/JuanF2023/restaurant-app)
 ![GitHub last commit](https://img.shields.io/github/last-commit/JuanF2023/restaurant-app)
 ![GitHub license](https://img.shields.io/badge/license-MIT-green)
