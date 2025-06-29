@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Trash2, ArrowRight, LogIn, Coffee, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
 
 const PIN_LENGTH = 4;
+
 
 const LoginPage = () => {
   const [pin, setPin] = useState('');
@@ -19,10 +22,15 @@ const LoginPage = () => {
   };
   const handleClear = () => setPin('');
   const handleBackspace = () => setPin(pin.slice(0, -1));
+  const navigate = useNavigate(); // ← agrégalo dentro del componente
+
   const handleContinue = () => {
-    // Aquí puedes poner validación y navegación
     showAlert('Ingreso exitoso.');
+    setTimeout(() => {
+      navigate('/home');
+    }, 800);
   };
+  
 
   // Alerta moderna usando toast simple 
   const showAlert = (msg) => {
@@ -134,12 +142,18 @@ const LoginPage = () => {
 
           {/* Botones de acción */}
           <div className="flex flex-col gap-4 mt-8 items-center">
-            <button
-              className="w-[50%] bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 text-lg shadow"
-              onClick={() => showAlert('Ingreso exitoso.')}
-            >
-              <LogIn size={22} /> Entrar
-            </button>
+          <button
+  className="w-[50%] bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 text-lg shadow"
+  onClick={() => {
+    showAlert('Ingreso exitoso.');
+    setTimeout(() => {
+      navigate('/home');
+    }, 800);
+  }}
+>
+  <LogIn size={22} /> Entrar
+</button>
+
             <button
               className="w-[50%] bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-lg flex items-center justify-center gap-2 text-lg shadow"
               onClick={() => showAlert('Receso activado.')}
