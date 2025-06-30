@@ -56,8 +56,8 @@ const options = [
 
 export default function MenuManagement() {
   return (
-    <div className="p-6">
-      <div className="flex items-center mb-6 text-white text-2xl font-bold gap-2">
+    <div className="pt-2 px-6 pb-6">
+      <div className="flex items-center mb-4 text-white text-2xl font-bold gap-2">
         <span className="text-yellow-400">
           <ChefHat size={28} />
         </span>
@@ -65,7 +65,7 @@ export default function MenuManagement() {
       </div>
 
       <Tabs defaultValue="porciones" className="w-full">
-        <TabsList className="flex flex-wrap gap-0 overflow-x-auto border-b border-yellow-400">
+        <TabsList className="flex gap-2 overflow-x-auto mb-6 px-1 scrollbar-thin scrollbar-thumb-yellow-400">
           {options.map((option) => (
             <TabsTrigger
               key={option.value}
