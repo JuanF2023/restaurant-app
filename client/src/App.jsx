@@ -1,54 +1,65 @@
 import { Navigate } from 'react-router-dom';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import LoginPage from "./pages/LoginPage";
-import Dashboard from "./pages/Dashboard";
-import Orders from "./pages/Orders";
-import MenuManagement from "./pages/MenuManagement";
-import Funciones from "./pages/Funciones";
-import Reports from "./pages/Reports";
-import HomePage from "./pages/HomePage";
-import MainLayout from "./layouts/MainLayout";
-import OrderBuilder from './pages/OrderBuilder';
+// Login
+import LoginPage from './pages/LoginPage.jsx';
 
-// Subvistas dentro de /settings/
-import Usuarios from './pages/Funciones/Usuarios';
-import Turnos from './pages/Funciones/Turnos';
-import Configuracion from './pages/Funciones/Configuracion';
-import Impuestos from './pages/Funciones/Impuestos';
-import Parametros from './pages/Funciones/Parametros';
+// Corporativo
+import CorporativoLayout from './components/layouts/CorporativoLayout.jsx';
+import CorporativoView from './pages/Corporativo/CorporativoView.jsx';
+import CorporativoDashboard from './pages/Corporativo/CorporativoDashboard.jsx';
+
+// Restaurante - Layout
+import RestauranteLayout from './components/layouts/RestauranteLayout.jsx';
+
+// Restaurante - Vistas principales
+import HomePage from './pages/Restaurante/HomePage.jsx';
+import MenuManagement from './pages/Restaurante/MenuManagement.jsx';
+import OrderBuilder from './pages/Restaurante/OrderBuilder.jsx';
+import Orders from './pages/Restaurante/Orders.jsx';
+import Reports from './pages/Restaurante/Reports.jsx';
+import Funciones from './pages/Restaurante/Funciones/Funciones.jsx';
+
+// Restaurante - Subvistas de Funciones
+import Usuarios from './pages/Restaurante/Funciones/Usuarios.jsx';
+import Turnos from './pages/Restaurante/Funciones/Turnos.jsx';
+import Configuracion from './pages/Restaurante/Funciones/Configuracion.jsx';
+import Impuestos from './pages/Restaurante/Funciones/Impuestos.jsx';
 
 function App() {
   return (
     <Router>
-  <Routes>
-    {/* Login separado */}
-    <Route path="/login" element={<LoginPage />} />
+      <Routes>
+        {/* Login */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route index element={<Navigate to="/login" />} />
 
-    {/* Redirección desde "/" a /login */}
-    <Route index element={<Navigate to="/login" />} />
+        {/* Vista de selección de negocio (sin layout) */}
+        <Route path="/corporacion" element={<CorporativoView />} />
 
-    {/* Layout principal */}
-    <Route path="/" element={<MainLayout />}>
-      <Route path="home" element={<HomePage />} />
-      <Route path="dashboard" element={<Dashboard />} />
-      <Route path="orders" element={<Orders />} />
-      <Route path="menu" element={<MenuManagement />} />
+        {/* Corporativo (con layout) */}
+        <Route element={<CorporativoLayout />}>
+          <Route path="/corporativo" element={<CorporativoDashboard />} />
+          {/* Aquí puedes añadir más rutas corporativas */}
+        </Route>
 
-      {/* Funciones */}
-      <Route path="settings" element={<Funciones />} />
-      <Route path="settings/usuarios" element={<Usuarios />} />
-      <Route path="settings/turnos" element={<Turnos />} />
-      <Route path="settings/configuracion" element={<Configuracion />} />
-      <Route path="settings/impuestos" element={<Impuestos />} />
-      <Route path="settings/parametros" element={<Parametros />} />
+        {/* Restaurante (con layout) */}
+        <Route element={<RestauranteLayout />}>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/ordenes" element={<Orders />} />
+          <Route path="/menu" element={<MenuManagement />} />
+          <Route path="/funciones" element={<Funciones />} />
+          <Route path="/reportes" element={<Reports />} />
+          <Route path="/ordenar" element={<OrderBuilder />} />
 
-      <Route path="reports" element={<Reports />} />
-      <Route path="orden/:mesaId" element={<OrderBuilder />} />
-    </Route>
-  </Routes>
-</Router>
-
+          {/* Subvistas de Funciones */}
+          <Route path="/funciones/usuarios" element={<Usuarios />} />
+          <Route path="/funciones/turnos" element={<Turnos />} />
+          <Route path="/funciones/configuracion" element={<Configuracion />} />
+          <Route path="/funciones/impuestos" element={<Impuestos />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

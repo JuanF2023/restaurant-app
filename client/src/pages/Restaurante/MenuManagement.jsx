@@ -11,7 +11,6 @@ import {
   List,
   Scale,
   ChefHat,
-  Settings,
 } from "lucide-react";
 
 import PortionForm from "./forms/PortionForm";
@@ -19,7 +18,6 @@ import ComboForm from "./forms/ComboForm";
 import CategoryForm from "./forms/CategoryForm";
 import UnidadForm from "./forms/UnidadForm";
 import PreparacionForm from "./forms/PreparacionForm";
-import ConfigForm from "./forms/ConfigForm";
 
 const options = [
   {
@@ -47,11 +45,6 @@ const options = [
     title: "Preparaciones",
     icon: <ChefHat size={20} />,
   },
-  {
-    value: "configuracion",
-    title: "Configuración",
-    icon: <Settings size={20} />,
-  },
 ];
 
 export default function MenuManagement() {
@@ -67,16 +60,23 @@ export default function MenuManagement() {
       <Tabs defaultValue="porciones" className="w-full">
         <TabsList className="flex gap-2 overflow-x-auto mb-6 px-1 scrollbar-thin scrollbar-thumb-yellow-400">
           {options.map((option) => (
-            <TabsTrigger
-              key={option.value}
-              value={option.value}
-              className="relative px-4 py-2 font-semibold text-white bg-green-600 hover:bg-green-700 transition-all duration-200 border-r border-yellow-300 rounded-tl-[10px] rounded-tr-[0] clip-tab-shape"
-            >
-              <div className="flex items-center gap-2">
-                {option.icon}
-                <span className="hidden sm:inline">{option.title}</span>
-              </div>
-            </TabsTrigger>
+           <TabsTrigger
+           key={option.value}
+           value={option.value}
+           className="relative px-4 py-2 font-semibold transition-all duration-200 border-r border-yellow-300 rounded-tl-[10px] rounded-tr-[0] clip-tab-shape
+             data-[state=active]:bg-yellow-400
+             data-[state=active]:text-black
+             data-[state=inactive]:bg-green-600
+             data-[state=inactive]:text-white
+             data-[state=inactive]:hover:bg-green-700"
+         >
+           <div className="flex items-center gap-2">
+             {option.icon}
+             <span className="hidden sm:inline">{option.title}</span>
+           </div>
+         </TabsTrigger>
+         
+          
           ))}
         </TabsList>
 
@@ -94,9 +94,6 @@ export default function MenuManagement() {
         </TabsContent>
         <TabsContent value="preparaciones">
           <PreparacionForm />
-        </TabsContent>
-        <TabsContent value="configuracion">
-          <ConfigForm />
         </TabsContent>
       </Tabs>
     </div>

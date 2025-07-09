@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   UserCog,
   Clock,
-  Settings,
   Salad,
   Percent,
   Globe
@@ -11,42 +10,37 @@ import {
 
 const funciones = [
   {
+    titulo: 'Gestión de menú',
+    descripcion: 'Platos, porciones, categorías y precios',
+    icono: <Salad size={36} className="text-black" />,
+    ruta: '/menu' 
+  },
+  {
     titulo: 'Usuarios y roles',
     descripcion: 'Gestiona meseros, cocineros y gerentes',
     icono: <UserCog size={36} className="text-black" />,
-    ruta: '/settings/usuarios' // ✅ CORREGIDO
+    ruta: '/funciones/usuarios'  
   },
   {
     titulo: 'Turnos y entradas',
     descripcion: 'Controla registros de entrada y salida',
     icono: <Clock size={36} className="text-black" />,
-    ruta: '/settings/turnos' // ✅ CORREGIDO
-  },
-  {
-    titulo: 'Configuración restaurante',
-    descripcion: 'Nombre, sucursal, número de mesas',
-    icono: <Settings size={36} className="text-black" />,
-    ruta: '/settings/configuracion' // ✅ CORREGIDO
-  },
-  {
-    titulo: 'Gestión de menú',
-    descripcion: 'Platos, porciones, categorías y precios',
-    icono: <Salad size={36} className="text-black" />,
-    ruta: '/menu' // Esta ya estaba correcta
+    ruta: '/funciones/turnos'  
   },
   {
     titulo: 'Propinas e impuestos',
     descripcion: 'Define cargos automáticos por servicio',
     icono: <Percent size={36} className="text-black" />,
-    ruta: '/settings/impuestos' // ✅ CORREGIDO
+    ruta: '/funciones/impuestos'  
   },
   {
     titulo: 'Parámetros generales',
-    descripcion: 'Idioma, zona horaria, horario de atención',
+    descripcion: 'Nombre del restaurante, idioma, zona horaria, horario...',
     icono: <Globe size={36} className="text-black" />,
-    ruta: '/settings/parametros' // ✅ CORREGIDO
+    ruta: '/funciones/configuracion'  
   }
 ];
+
 
 const Funciones = () => {
   const navigate = useNavigate();

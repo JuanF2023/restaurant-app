@@ -18,9 +18,8 @@ const MainLayout = () => {
   }).format(new Date()).replace(/([a-zñáéíóú])/i, match => match.toUpperCase());
 
   const navLinkClass = ({ isActive }) =>
-    `w-[150px] flex items-center justify-center gap-2 text-center px-4 py-3 rounded-md text-xl font-bold border-2 border-yellow-400 bg-blue-600 text-white transition-all duration-300 ease-in-out transform ${isActive
-      ? 'bg-blue-700 shadow-lg scale-105'
-      : 'hover:bg-blue-500'
+    `w-[150px] flex items-center justify-center gap-2 text-center px-4 py-3 rounded-md text-xl font-bold border-2 border-yellow-400 bg-blue-600 text-white transition-all duration-300 ease-in-out transform ${
+      isActive ? 'bg-blue-700 shadow-lg scale-105' : 'hover:bg-blue-500'
     }`;
 
   const handleNavClick = () => {
@@ -52,23 +51,24 @@ const MainLayout = () => {
 
           {/* Navegación */}
           <div
-            className={`flex-col md:flex md:flex-row md:items-center md:gap-6 ${menuAbierto ? 'flex gap-4' : 'hidden'
-              } md:gap-6 md:flex`}
+            className={`flex-col md:flex md:flex-row md:items-center md:gap-6 ${
+              menuAbierto ? 'flex gap-4' : 'hidden'
+            } md:gap-6 md:flex`}
           >
             <nav className="flex flex-col md:flex-row gap-2 md:gap-4 font-semibold">
               <NavLink to="/home" onClick={handleNavClick} className={navLinkClass}>
                 <Home size={24} className="text-[#FACC15] translate-y-[1px]" />
                 Inicio
               </NavLink>
-              <NavLink to="/orders" onClick={handleNavClick} className={navLinkClass}>
+              <NavLink to="/ordenes" onClick={handleNavClick} className={navLinkClass}>
                 <ListOrdered size={24} className="text-[#FACC15] translate-y-[1px]" />
                 Órdenes
               </NavLink>
-              <NavLink to="/settings" onClick={handleNavClick} className={navLinkClass}>
+              <NavLink to="/funciones" onClick={handleNavClick} className={navLinkClass}>
                 <Settings size={26} className="text-[#FACC15] translate-y-[1px]" />
                 Funciones
               </NavLink>
-              <NavLink to="/reports" onClick={handleNavClick} className={navLinkClass}>
+              <NavLink to="/reportes" onClick={handleNavClick} className={navLinkClass}>
                 <FileBarChart size={24} className="text-[#FACC15] translate-y-[1px]" />
                 Reportes
               </NavLink>

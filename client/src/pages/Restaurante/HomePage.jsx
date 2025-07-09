@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MesaModal from '../components/ui/MesaModal';
+import MesaModal from '../../components/ui/MesaModal';
 import { UtensilsCrossed, ShoppingBag, User } from 'lucide-react';
 
 const mesasIniciales = [
