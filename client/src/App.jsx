@@ -51,6 +51,7 @@ function App() {
           <Route path="/funciones" element={<Funciones />} />
           <Route path="/reportes" element={<Reports />} />
           <Route path="/ordenar" element={<OrderBuilder />} />
+          <Route path="orden/:id" element={<OrderBuilder />} />
 
           {/* Subvistas de Funciones */}
           <Route path="/funciones/usuarios" element={<Usuarios />} />
