@@ -1,99 +1,97 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import {
-  Menu,
   Home,
   ListOrdered,
-  Settings,
+  ChefHat,
   FileBarChart,
+  Settings,
+  Menu,
+  X,
 } from 'lucide-react';
 
-const MainLayout = () => {
+const RestauranteLayout = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   const fecha = new Intl.DateTimeFormat('es-ES', {
+    day: '2-digit',
     month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  }).format(new Date()).replace(/([a-zñáéíóú])/i, match => match.toUpperCase());
+    year: 'numeric',
+  })
+    .format(new Date())
+    .toUpperCase();
 
-  const navLinkClass = ({ isActive }) =>
-    `w-[150px] flex items-center justify-center gap-2 text-center px-4 py-3 rounded-md text-xl font-bold border-2 border-yellow-400 bg-blue-600 text-white transition-all duration-300 ease-in-out transform ${
-      isActive ? 'bg-blue-700 shadow-lg scale-105' : 'hover:bg-blue-500'
-    }`;
+    const navLinkClass = ({ isActive }) =>
+      `flex items-center gap-2 px-4 py-2.5 rounded-lg text-base font-bold border-2 border-yellow-400 
+       transition-all duration-200 ease-in-out
+       ${isActive 
+          ? 'bg-gradient-to-r from-blue-700 to-blue-600 text-white shadow-lg scale-105' 
+          : 'bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:scale-105 hover:shadow-md'}
+      `;
+    
 
-  const handleNavClick = () => {
-    if (window.innerWidth < 768) {
-      setMenuAbierto(false);
-    }
-  };
+  const cerrarMenu = () => setMenuAbierto(false); // Función para cerrar el menú al hacer clic
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-900 text-white transition-all duration-500 ease-in-out">
-      {/* Encabezado y navegación */}
-      <div className="p-6">
-        <div className="flex justify-between items-start md:items-center flex-col md:flex-row mb-6 gap-4">
+    <div className="flex flex-col min-h-screen bg-slate-900">
+      {/* NAVBAR SUPERIOR */}
+      <header className="bg-slate-800 border-b border-yellow-400 px-4 py-3 md:px-6 flex flex-col md:flex-row md:items-center md:justify-between">
+        {/* TÍTULO Y FECHA */}
+        <div className="flex items-center justify-between md:justify-start w-full">
           <div>
-            <h1 className="text-4xl font-bold">Restaurante 01</h1>
-            <p className="text-xl text-blue-300">Juan Carlos</p>
+            <h1 className="text-3xl font-bold text-yellow-400">Restaurante 01</h1>
+
+
+            <p className="text-lg text-blue-200">Sucursal Chaparral · {fecha}</p>
           </div>
 
-          {/* Botón hamburguesa solo en móviles */}
-          <div className="md:hidden self-end">
-            <button
-              className="text-[#FACC15] hover:text-yellow-300 focus:outline-none"
-              onClick={() => setMenuAbierto(!menuAbierto)}
-              aria-label="Menú"
-            >
-              <Menu size={48} strokeWidth={2.5} />
-            </button>
-          </div>
-
-          {/* Navegación */}
-          <div
-            className={`flex-col md:flex md:flex-row md:items-center md:gap-6 ${
-              menuAbierto ? 'flex gap-4' : 'hidden'
-            } md:gap-6 md:flex`}
+          {/* BOTÓN HAMBURGUESA */}
+          <button
+            onClick={() => setMenuAbierto(!menuAbierto)}
+            className="md:hidden text-white p-2"
+            aria-label="Abrir menú"
           >
-            <nav className="flex flex-col md:flex-row gap-2 md:gap-4 font-semibold">
-              <NavLink to="/home" onClick={handleNavClick} className={navLinkClass}>
-                <Home size={24} className="text-[#FACC15] translate-y-[1px]" />
-                Inicio
-              </NavLink>
-              <NavLink to="/ordenes" onClick={handleNavClick} className={navLinkClass}>
-                <ListOrdered size={24} className="text-[#FACC15] translate-y-[1px]" />
-                Órdenes
-              </NavLink>
-              <NavLink to="/funciones" onClick={handleNavClick} className={navLinkClass}>
-                <Settings size={26} className="text-[#FACC15] translate-y-[1px]" />
-                Funciones
-              </NavLink>
-              <NavLink to="/reportes" onClick={handleNavClick} className={navLinkClass}>
-                <FileBarChart size={24} className="text-[#FACC15] translate-y-[1px]" />
-                Reportes
-              </NavLink>
-            </nav>
-            <div className="flex flex-col md:flex-row md:items-center md:gap-4 gap-1 text-xl text-gray-400 md:ml-4">
-              <span>{fecha}</span>
-            </div>
-          </div>
+            {menuAbierto ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
 
-        {/* Línea decorativa */}
-        <div className="h-1 w-full bg-[#FACC15] rounded opacity-90 my-4 shadow-md" />
-      </div>
+        {/* NAV ENLACES */}
+        <nav
+          className={`flex flex-col md:flex-row gap-2 mt-3 md:mt-0 transition-all duration-300 ${menuAbierto ? 'flex' : 'hidden md:flex'
+            }`}
+        >
+          <NavLink to="/home" className={navLinkClass} onClick={cerrarMenu}>
+            <Home size={20} /> Inicio
+          </NavLink>
+          <NavLink to="/ordenes" className={navLinkClass} onClick={cerrarMenu}>
+            <ListOrdered size={20} /> Órdenes
+          </NavLink>
+          <NavLink to="/menu" className={navLinkClass} onClick={cerrarMenu}>
+            <ChefHat size={20} /> Menú
+          </NavLink>
+          <NavLink to="/funciones" className={navLinkClass} onClick={cerrarMenu}>
+            <Settings size={20} /> Funciones
+          </NavLink>
+          <NavLink to="/reportes" className={navLinkClass} onClick={cerrarMenu}>
+            <FileBarChart size={20} /> Informes
+          </NavLink>
+        </nav>
+      </header>
 
-      {/* Contenido dinámico */}
-      <div className="flex-grow px-6">
+      {/* CONTENIDO PRINCIPAL */}
+      <main className="flex-1 min-h-0 overflow-y-auto px-3 md:px-6 py-4 flex flex-col">
+
         <Outlet />
-      </div>
+      </main>
 
-      {/* Footer */}
-      <footer className="border-t border-yellow-500 text-sm text-gray-400 text-center py-2">
-        Restaurante 01 – Sucursal 1 · Dispositivo #1 · v1.0.0
+{/* FOOTER FIJO SIEMPRE VISIBLE */}
+<footer className="fixed bottom-0 inset-x-0 z-50 bg-black/85 backdrop-blur border-t border-yellow-500/70">
+        <div className="max-w-screen-2xl mx-auto px-4 md:px-8 py-3 text-center text-slate-200 text-sm md:text-base">
+          Restaurante 01 · <span className="text-white">Sucursal Chaparral</span> · Dispositivo <span className="text-yellow-400 font-semibold">#1</span> · <span className="text-yellow-400">v1.0.0</span>
+        </div>
       </footer>
     </div>
   );
 };
 
-export default MainLayout;
+export default RestauranteLayout;

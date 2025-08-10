@@ -14,26 +14,31 @@ const MesaModal = ({ isOpen, onClose, mesaId, onConfirm }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl p-6 w-80 text-gray-800">
-        <h2 className="text-lg font-bold mb-4">¿Cuántas personas hay en la Mesa {mesaId}?</h2>
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="bg-slate-800 text-white rounded-xl p-6 w-80 border border-yellow-400 shadow-xl">
+        <h2 className="text-lg font-bold mb-4">
+          ¿Cuántas personas hay en la Mesa {mesaId}?
+        </h2>
+
         <input
           type="number"
           value={cantidad}
           onChange={(e) => setCantidad(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 mb-4 rounded-md bg-slate-700 text-white border border-yellow-400 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
           placeholder="Ej: 2"
         />
+
         <div className="flex justify-end gap-2">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 text-sm"
+            className="px-4 py-2 rounded-md bg-gray-600 hover:bg-gray-700 text-white text-sm font-semibold"
           >
             Cancelar
           </button>
           <button
             onClick={handleConfirm}
-            className="px-4 py-2 rounded bg-green-600 hover:bg-green-700 text-white font-semibold text-sm"
+            disabled={!cantidad}
+            className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold border border-yellow-400 shadow transition-all disabled:opacity-50"
           >
             Confirmar
           </button>

@@ -1,4 +1,10 @@
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Forzar que html, body y root ocupen toda la altura */
+html, body, #root {
+    height: 100%;
+  }
+  
+  /* Tailwind base styles */
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  
